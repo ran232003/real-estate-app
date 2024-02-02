@@ -1,0 +1,24 @@
+.EstateDetails {
+  display: flex;
+  flex-direction: column;
+}
+.info-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+.rent-sell {
+  border: green solid 2px;
+  padding: 20px;
+}
+.condition-info {
+  /* border: green solid 2px; */
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  margin-top: 20px;
+}
+.info-btn {
+  width: 20%;
+}

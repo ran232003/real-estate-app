@@ -1,0 +1,56 @@
+.SearchPage {
+  display: flex;
+}
+.SideBarSearch {
+  flex: 0.8;
+  width: 15%;
+  /* border: rgb(223, 218, 218) solid 1px; */
+  border-right: rgb(223, 218, 218) solid 1px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.EstateListMain {
+  flex: 3;
+  width: 70%;
+  /* border: rgb(223, 218, 218) solid 1px; */
+  border-left: rgb(223, 218, 218) solid 1px;
+  border-radius: 5px;
+  padding: 20px;
+  height: 100vh;
+}
+.searchBar {
+  display: flex;
+  align-items: baseline;
+}
+.search-checkBoxes {
+  margin-top: 10px;
+}
+.SearchSort {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+}
+.sortSelect {
+  width: 50%;
+  margin-left: 10px;
+}
+.search-btn {
+  margin-top: 20px;
+}
+.auth-btn2 {
+  width: 80%;
+  background-color: rgb(47, 52, 63);
+}
+@media screen and (max-width: 1200px) {
+  .SideBarSearch {
+    flex: 1.5;
+  }
+}
+.estate-header {
+  width: 100%;
+}
+.estate-list {
+  display: flex;
+  flex-wrap: wrap;
+}
