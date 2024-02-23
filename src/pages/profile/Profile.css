@@ -73,6 +73,7 @@
 .ProfileEstateList {
   display: flex;
   flex-direction: column;
+  width: 40%;
 }
 .image-profile-pic2 {
   width: inherit;

@@ -14,7 +14,7 @@ const ProfileImage = (props) => {
     const imageUrl = URL.createObjectURL(selectedFile);
     document.getElementById("image-preview").src = imageUrl;
   };
-  console.log(user);
+  //console.log(user);
   useEffect(() => {
     if (user.image) {
       document.getElementById("image-preview").src = user.image;

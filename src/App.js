@@ -14,8 +14,24 @@ import CreateEstate from "./pages/createEstate/CreateEstate";
 import CreateEstateIndex from "./pages/createEstate/CreateEstateIndex";
 import SearchPage from "./pages/search/SearchPage";
 import EstateDetails from "./pages/estate-details/EstateDetails";
+import { useEffect } from "react";
+import { apiCall } from "./apiCall";
+import { GET_ESTATES } from "./URLS";
+import { useDispatch } from "react-redux";
+import { estateAction } from "./store/estateSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const getEstates = async () => {
+    try {
+      const data = await apiCall("GET", GET_ESTATES);
+      dispatch(estateAction.setEstates(data.estates));
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getEstates();
+  }, []);
   return (
     <div className="App">
       <NavigationBar />

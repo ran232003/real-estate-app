@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -7,12 +7,43 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { SEARCH_ESTATES } from "../URLS";
+import { apiCall } from "../apiCall";
+import { estateAction } from "../store/estateSlice";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 
 const NavigationBar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [input, setInput] = useState("");
   const user = useSelector((state) => {
     return state.auth.user;
   });
+  const handleChange = (e) => {
+    const val = e.target.value;
+    setInput(val);
+  };
+  const handleSubmit = async () => {
+    console.log(input);
+    const url = new URL(SEARCH_ESTATES);
+
+    // Add parameters to the URL
+
+    url.searchParams.append("search", input);
+
+    // You can use paramsString in your URL or log it to see the result
+    console.log(url);
+    const data = await apiCall("GET", url.href);
+    if (data.status !== "ok") {
+      return;
+    }
+    dispatch(estateAction.setEstates(data.estates));
+    navigate("/search", {
+      state: { check: true },
+    });
+  };
   return (
     <Navbar
       expand="lg"
@@ -61,8 +92,12 @@ const NavigationBar = () => {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              onChange={handleChange}
+              value={input}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" onClick={handleSubmit}>
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>

@@ -2,11 +2,12 @@ import React from "react";
 import EstateItem from "./components/EstateItem";
 const dummy = [1, 2, 3, 4, 5, 6];
 const EstateList = (props) => {
-  console.log(props.estates);
+  const { estates, headline, width } = props;
+  console.log(props.estates, width);
   return (
-    <div className="EstateListMain">
+    <div className="EstateListMain" style={{ width: width }}>
       <div className="estate-header">
-        <h1>Estate Results</h1>
+        <h1>{headline}</h1>
         <hr />
       </div>
       <div className="estate-list">

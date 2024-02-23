@@ -25,7 +25,7 @@ const CreateEstateIndex = () => {
   const dispatch = useDispatch();
   let { status } = useParams();
   const location = useLocation();
-  const estate = location.state.estate;
+  const estate = location.state?.estate;
   const estateHeadline = status === "create" ? "Create Estate" : "Edit Estate";
   const user = useSelector((state) => {
     return state.auth.user;

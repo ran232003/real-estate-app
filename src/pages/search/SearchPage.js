@@ -7,10 +7,13 @@ import { apiCall } from "../../apiCall";
 import { GET_ESTATES } from "../../URLS";
 import { useDispatch } from "react-redux";
 import { estateAction } from "../../store/estateSlice";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 
 const SearchPage = () => {
   const dispatch = useDispatch();
-
+  const location = useLocation();
+  const check = location.state?.check;
+  console.log(check);
   const estates = useSelector((state) => {
     return state.estate.estates;
   });
@@ -21,12 +24,19 @@ const SearchPage = () => {
     } catch (error) {}
   };
   useEffect(() => {
-    getEstates();
+    if (!check) {
+      getEstates();
+    }
   }, []);
   return (
     <div className="SearchPage">
       <SideBarSearch className="SideBarSearch" />
-      <EstateList estates={estates} className="EstateList" />
+      <EstateList
+        estates={estates}
+        className="EstateList"
+        headline="Estate Results"
+        width="70%"
+      />
     </div>
   );
 };
